@@ -19,14 +19,17 @@ export function main() {
     c2.depositar(100.00);
     c2.visualizar();
 
-    do {
+    while (true) {
         menu()
 
         opcao = readlinesync.questionInt();
 
         if (opcao == 9) {
-            about()
-            process.exit(0)
+            console.log(colors.fg.greenstrong, 
+                "\nFolk'or Bank: Sabedoria financeira para um futuro sólido.");
+            about();
+            console.log(colors.reset, "");
+            process.exit(0);
         }
 
 
@@ -69,12 +72,13 @@ export function main() {
 
         }
 
-    } while (true);
+    }
 }
 
 function menu(): void {
 
-    console.log(colors.fg.greenstrong,"=====================================================");
+    console.log(colors.fg.greenstrong,
+                "===================================================== ");
     console.log("                    FOLK'OR BANK                      ");
     console.log(" -----------------------------------------------------");
     console.log("                                                      ");
