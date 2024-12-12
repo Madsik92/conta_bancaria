@@ -60,7 +60,7 @@ export class Conta{
 
     public sacar(valor: number): boolean{
         if(valor > this._saldo){
-            console.log("Saldo Insuficiente!");
+            console.log("\n Saldo Insuficiente!\n");
             return false;
         }
             
@@ -88,13 +88,13 @@ export class Conta{
                 tipo = "Tipo Invalido"
         }
 
-        console.log("===============================")
-        console.log("Dados da Conta")
-        console.log("-------------------------------")
-        console.log(`Numero da Conta: ${this._numero}`)
-        console.log(`Numero da Agencia: ${this._agencia}`)
-        console.log(`Tipo da Conta: ${tipo}`)
-        console.log(`Nome do Titular da Conta: ${this._titular}`)
-        console.log(`Saldo da Conta: ${this._saldo}`)
+        console.log(" =====================================================")
+        console.log(" Dados da Conta                                       ")
+        console.log(" -----------------------------------------------------");
+        console.log(` Numero da Conta: ${this._numero}`)
+        console.log(` Numero da Agencia: ${this._agencia}`)
+        console.log(` Tipo da Conta: ${tipo}`)
+        console.log(` Nome do Titular da Conta: ${this._titular}`)
+        console.log(` Saldo da Conta: ${this._saldo}`)
     }
 }
