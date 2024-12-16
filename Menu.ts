@@ -89,11 +89,55 @@ export function main() {
             case 4:
                 console.log('\n\n Atualizar Dados da Conta\n\n');
 
+                console.log(" Digite o Numero da Conta: ");
+                numero = readlinesync.questionInt('');
+
+                let conta = contas.buscarNoArray(numero);
+
+                if (conta !== null) {
+
+                    console.log('Digite o Numero da Agencia: ');
+                    agencia = readlinesync.questionInt('');
+
+                    console.log('Digite o Nome do Titular: ');
+                    titular = readlinesync.question('');
+
+                    console.log('Escolha o Tipo da Conta: ');
+                    tipo = readlinesync.keyInSelect(tipoContas, "", { cancel: false }) + 1;
+
+                    console.log('Digite o Saldo da Conta: ');
+                    saldo = readlinesync.questionFloat('');
+
+                    tipo = conta.tipo;
+
+                    switch (tipo) {
+                        case 1:
+                            console.log('Digite o Limite da Conta: ');
+                            limite = readlinesync.questionFloat('');
+                            contas.atualizar(new ContaCorrente(numero, agencia, tipo, titular, saldo, limite))
+
+                            break;
+                        case 2:
+                            console.log('Digite o Aniversario da Poupanca: ');
+                            aniversario = readlinesync.questionInt('');
+                            contas.atualizar(new ContaPoupanca(numero, agencia, tipo, titular, saldo, aniversario))
+
+                            break;
+                    }
+                } else {
+                    console.log("Conta nao encontrada!")
+                }
+
                 keyPress()
                 break;
 
             case 5:
                 console.log('\n\n Apagar Conta\n\n');
+
+                console.log(" Digite o Numero da Conta: ");
+                numero = readlinesync.questionInt('');
+
+                contas.deletar(numero);
 
                 keyPress()
                 break;
