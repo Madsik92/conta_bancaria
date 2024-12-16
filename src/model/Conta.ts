@@ -1,3 +1,5 @@
+import { colors } from "../util/Colors";
+
 export abstract class Conta{
 
     // Definir modelo de dados (atributos)
@@ -60,7 +62,7 @@ export abstract class Conta{
 
     public sacar(valor: number): boolean{
         if(valor > this._saldo){
-            console.log("\n Saldo Insuficiente!\n");
+            console.log(colors.fg.red, "\n Saldo Insuficiente!\n", colors.reset);
             return false;
         }
             
@@ -88,13 +90,13 @@ export abstract class Conta{
                 tipo = "Tipo Invalido"
         }
 
-        console.log(" =====================================================")
+        console.log(colors.fg.green, "=====================================================")
         console.log(" Dados da Conta                                       ")
         console.log(" -----------------------------------------------------");
         console.log(` Numero da Conta: ${this._numero}`)
         console.log(` Numero da Agencia: ${this._agencia}`)
         console.log(` Tipo da Conta: ${tipo}`)
         console.log(` Nome do Titular da Conta: ${this._titular}`)
-        console.log(` Saldo da Conta: ${this._saldo}`)
+        console.log(` Saldo da Conta: ${this._saldo}`, colors.reset)
     }
 }

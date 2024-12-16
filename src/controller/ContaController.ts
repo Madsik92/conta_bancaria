@@ -1,5 +1,6 @@
 import { Conta } from "../model/Conta";
 import { ContaRepository } from "../repository/ContaRepository";
+import { colors } from "../util/Colors";
 
 export class ContaController implements ContaRepository {
     procurarPorTitular(titular: string): void {
@@ -24,7 +25,7 @@ export class ContaController implements ContaRepository {
         if (buscaConta !== null)
             buscaConta.visualizar()
         else
-            console.log("\n Conta nao encontrada!")
+            console.log(colors.fg.red, "\nConta nao encontrada!", colors.reset)
     }
 
     listarTodas(): void {
@@ -35,7 +36,7 @@ export class ContaController implements ContaRepository {
 
     public cadastrar(conta: Conta): void {
         this.listaContas.push(conta);
-        console.log("A Conta foi cadastrada com sucesso!")
+        console.log(colors.fg.greenstrong, "\nA Conta foi cadastrada com sucesso!", colors.reset)
     }
 
     atualizar(conta: Conta): void {
@@ -43,9 +44,9 @@ export class ContaController implements ContaRepository {
 
         if (buscaConta !== null) {
             this.listaContas[this.listaContas.indexOf(buscaConta)] = conta;
-            console.log("A conta foi atualizada com sucesso!");
+            console.log(colors.fg.greenstrong, "\nA conta foi atualizada com sucesso!", colors.reset);
         } else
-            console.log("\n Conta nao encontrada!")
+            console.log(colors.fg.red, "\nConta nao encontrada!", colors.reset)
     }
 
     deletar(numero: number): void {
@@ -53,9 +54,9 @@ export class ContaController implements ContaRepository {
 
         if (buscaConta !== null) {
             this.listaContas.splice(this.listaContas.indexOf(buscaConta), 1);
-            console.log("A conta foi Deletada com sucesso!");
+            console.log(colors.fg.greenstrong, "\nA conta foi Deletada com sucesso!", colors.reset);
         } else
-            console.log("\n Conta nao encontrada!")
+            console.log(colors.fg.red, "\nConta nao encontrada!", colors.reset)
     }
 
     // Metodos Bancarios
@@ -64,9 +65,9 @@ export class ContaController implements ContaRepository {
 
         if (buscaConta !== null) {
             if (buscaConta.sacar(valor) === true)
-                console.log("O Saque foi efetuado com sucesso!");
+                console.log(colors.fg.greenstrong, "\nO Saque foi efetuado com sucesso!", colors.reset);
         } else
-            console.log("\n Conta nao encontrada!")
+            console.log(colors.fg.red, "\nConta nao encontrada!", colors.reset)
     }
 
     depositar(numero: number, valor: number): void {
@@ -74,9 +75,9 @@ export class ContaController implements ContaRepository {
 
         if (buscaConta !== null) {
             buscaConta.depositar(valor)
-            console.log("O Depósito foi efetuado com sucesso!");
+            console.log(colors.fg.greenstrong, "\nO Depósito foi efetuado com sucesso!", colors.reset);
         } else
-            console.log("\n Conta nao encontrada!")
+            console.log(colors.fg.red, "\nConta nao encontrada!", colors.reset)
     }
 
     transferir(numeroOrigem: number, numeroDestino: number, valor: number): void {
@@ -86,11 +87,11 @@ export class ContaController implements ContaRepository {
         if (contaOrigem !== null && contaDestino !== null) {
             if (contaOrigem.sacar(valor) === true) {
                 contaDestino.depositar(valor);
-                console.log("O Transferencia foi efetuado com sucesso!");
+                console.log(colors.fg.greenstrong, "\nA Transferencia foi efetuada com sucesso!", colors.reset);
             }
 
         } else
-            console.log("\n Conta de Origem e/ou conta de Destino nao foi encontrada!");
+            console.log(colors.fg.red, "\nConta de Origem e/ou conta de Destino nao foi encontrada!", colors.reset);
     }
 
     // Metodos Auxiliares
