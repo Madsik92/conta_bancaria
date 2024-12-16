@@ -2,6 +2,13 @@ import { Conta } from "../model/Conta";
 import { ContaRepository } from "../repository/ContaRepository";
 
 export class ContaController implements ContaRepository {
+    procurarPorTitular(titular: string): void {
+
+        let buscaPorTitular = this.listaContas.filter(conta => 
+            conta.titular.toUpperCase().includes(titular.toUpperCase())
+        )
+        buscaPorTitular.forEach(conta => conta.visualizar());
+    }
 
     // Colecao Array que vai armazenar os objetos Conta
 
@@ -10,7 +17,6 @@ export class ContaController implements ContaRepository {
     // Controlar automaticamente os numeros das Contas
 
     public numero: number = 0;
-
 
     procurarPorNumero(numero: number): void {
         const buscaConta = this.buscarNoArray(numero);
@@ -57,7 +63,7 @@ export class ContaController implements ContaRepository {
         const buscaConta = this.buscarNoArray(numero);
 
         if (buscaConta !== null) {
-            if(buscaConta.sacar(valor) === true)
+            if (buscaConta.sacar(valor) === true)
                 console.log("O Saque foi efetuado com sucesso!");
         } else
             console.log("\n Conta nao encontrada!")
@@ -78,11 +84,11 @@ export class ContaController implements ContaRepository {
         const contaDestino = this.buscarNoArray(numeroDestino);
 
         if (contaOrigem !== null && contaDestino !== null) {
-            if(contaOrigem.sacar(valor) === true){
+            if (contaOrigem.sacar(valor) === true) {
                 contaDestino.depositar(valor);
                 console.log("O Transferencia foi efetuado com sucesso!");
             }
-                
+
         } else
             console.log("\n Conta de Origem e/ou conta de Destino nao foi encontrada!");
     }

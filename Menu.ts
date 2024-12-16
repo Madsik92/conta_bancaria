@@ -26,7 +26,7 @@ export function main() {
 
         opcao = readlinesync.questionInt();
 
-        if (opcao == 9) {
+        if (opcao == 0) {
             console.log(colors.fg.greenstrong,
                 "\nFolk'or Bank: Sabedoria financeira para um futuro sólido.");
             about();
@@ -187,6 +187,16 @@ export function main() {
                 keyPress()
                 break;
 
+                case 9:
+                console.log('\n\n Consulta por Titular\n\n');
+
+                console.log("\n Digite o nome do Titular: ")
+                titular = readlinesync.question('')
+
+                contas.procurarPorTitular(titular);
+                keyPress()
+                break;
+
             default:
                 console.log("\n\n Opcao Invalida\n\n")
 
@@ -210,7 +220,8 @@ function menu(): void {
     console.log("        6 - Sacar                                     ");
     console.log("        7 - Depositar                                 ");
     console.log("        8 - Transferir valores entre Contas           ");
-    console.log("        9 - Sair                                      ");
+    console.log("        9 - Buscar conta por Titular                                      ");
+    console.log("        0 - Sair                                      ");
     console.log("                                                      ");
     console.log(" =====================================================");
     console.log("\n Entre com a opcao desejada:", colors.reset);
